@@ -1,6 +1,7 @@
 #include <iostream> //std
 #include <vector>
 #include "TicTacToeBoard.hpp"
+#include <algorithm>
 
 TicTacToeBoard::TicTacToeBoard(){
     for (int i = 0; i < 3; i++){
