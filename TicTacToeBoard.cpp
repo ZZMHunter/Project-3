@@ -132,6 +132,9 @@ bool TicTacToeBoard::win(int row, int col) const{
 }
 
 bool TicTacToeBoard::winByRow(int row, int col) const{
+    if(board[row][col]==' '){
+        return false;
+    }
     for(int i = 1; i < board.size(); i++){
         if(board[row][i-1] != board[row][i]){
             return false;
@@ -141,6 +144,9 @@ bool TicTacToeBoard::winByRow(int row, int col) const{
 }
 
 bool TicTacToeBoard::winByCol(int row, int col) const{
+    if(board[row][col]==' '){
+        return false;
+    }
     for(int i = 1; i < board.size(); i++){
         if(board[i-1][col] != board[i][col]){
             return false;
