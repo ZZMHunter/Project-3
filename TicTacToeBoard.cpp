@@ -4,18 +4,15 @@
 #include <algorithm>
 
 TicTacToeBoard::TicTacToeBoard(){
-    for (int i = 0; i < 3; i++){
-        for (int j = 0; j < 3; j++){
-            board[i][j] = ' ';
-        }
-    }
+    board = std::vector<std::vector<char>>(3,std::vector<char>(3,' '));
 }
 
 TicTacToeBoard::TicTacToeBoard(int givenSize){
-    for (int i = 0; i < givenSize; i++){
-        for (int j = 0; j < givenSize; j++){
-            board[i][j] = ' ';
-        }
+    if(givenSize <= 3){
+        board = std::vector<std::vector<char>>(3,std::vector<char>(3,' '));
+    }
+    else{
+        board = std::vector<std::vector<char>>(givenSize,std::vector<char>(givenSize,' '));
     }
 }
 
@@ -57,20 +54,26 @@ bool TicTacToeBoard::isValidCol(int col) const{
 }
 
 std::string TicTacToeBoard::to_string() const{
-    std::string result= "";
-    for (int i = 0; i < board.size(); i++){
-        result += "| ";
-        for (int j = 0; j < board.size(); j++){
-            result += board[i][j];
-            result += " |"; 
+    std::string res = "";
+    for(int r = 0; r < board.size(); r++){
+        res+="+";
+        for(int c = 0; c < board.size(); c++){
+            res+="---+";
         }
-        result += "\n";
-        for (int j = 0; j < board.size(); j++){
-            result += "---";
+        res+="\n|";
+        for(int c = 0; c < board.size(); c++){
+            res+=" ";
+            res+=board[r][c];
+            res+=" |";
         }
-        result += "\n";
+        res+="\n";
     }
-    return result;
+    res+="+";
+    for(int c = 0; c < board.size(); c++){
+        res+="---+";
+    }
+    res+="\n";
+    return res;
 }
 
 bool TicTacToeBoard::tie() const{
